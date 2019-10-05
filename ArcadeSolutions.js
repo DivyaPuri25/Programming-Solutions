@@ -112,8 +112,9 @@ function adjacentElementsProduct(inputArray) {
 
 // Mano's solution
 
-
-
+function shapeArea(n) {
+    return (n * n) + (n-1) * (n-1)
+}
 
 // Divya's solution
 
@@ -208,8 +209,22 @@ function almostIncreasingSequence(sequence) {
 
 // Mano's solution
 
-
-
+function matrixElementsSum(matrix) {
+    
+    let sum = 0
+    
+    for(let i = 0; i < matrix.length; i++) {
+        for(let j = 0; j < matrix[i].length; j++) {
+            if(matrix[i][j] == 0 && i < matrix.length - 1) {
+                matrix[i+1][j] = 0
+            } else {
+                sum = sum + matrix[i][j]
+            }
+        }
+    }
+    
+    return sum
+}
 
 // Divya's solution
 function matrixElementsSum(matrix) {
@@ -242,8 +257,23 @@ function matrixElementsSum(matrix) {
 
 // Mano's solution
 
-
-
+function allLongestStrings(inputArray) {
+    let maxStringLength = 0
+    for(let i = 0; i < inputArray.length; i++) {
+        if(inputArray[i].length > maxStringLength) {
+            maxStringLength = inputArray[i].length
+        }
+    }
+    
+    let longestStrings = []
+    for(let i = 0; i < inputArray.length; i++) {
+        if(inputArray[i].length == maxStringLength) {
+            longestStrings.push(inputArray[i])
+        }
+    }
+    
+    return longestStrings
+}
 
 // Divya's solution
 function allLongestStrings(inputArray) {
@@ -273,6 +303,30 @@ function allLongestStrings(inputArray) {
 
 // Mano's solution
 
+function commonCharacterCount(s1, s2) {
+    let commonChar = 0
+    let c1 = Array.from(s1)
+    let c2 = Array.from(s2)
+    
+    if(s1.length < s2.length) {
+        for(let i = 0; i < s1.length; i++) {
+            if(c2.includes(s1[i])) {
+                commonChar++
+                c2.splice(c2.indexOf(s1[i]), 1)
+            }
+        }
+    } else {
+        for(let i = 0; i < s2.length; i++) {
+            console.log(c1)
+            if(c1.includes(s2[i])) {
+                commonChar++
+                c1.splice(c1.indexOf(s2[i]), 1)
+            }
+        }
+    }
+    
+    return commonChar
+}
 
 
 
@@ -318,8 +372,29 @@ function commonCharacterCount(s1, s2) {
 
 // Mano's solution
 
-
-
+function isLucky(n) {
+    let a = '' + n
+    
+    let firstHalf = Array.from(a.slice(0, a.length/2))
+    let secondHalf = Array.from(a.slice(a.length/2))
+    
+    let firstHalfSum = 0
+    let secondHalfSum = 0
+    
+    firstHalf.forEach((c) => {
+        firstHalfSum += parseInt(c)
+    })
+    
+    secondHalf.forEach((c) => {
+        secondHalfSum += parseInt(c)
+    })
+    
+    if(firstHalfSum == secondHalfSum) {
+        return true
+    } else {
+        return false
+    }
+}
 
 // Divya's solution
 function isLucky(n) {
@@ -350,3 +425,31 @@ function sumOfDigits(x){
     return Math.floor(sum);
 }
 
+// 12. Sort by Height
+
+// Mano's solution
+
+function sortByHeight(a) {
+    let noTrees = []
+    
+    a.forEach((e) => {
+        if(e != -1) {
+            noTrees.push(e)
+        }
+    })
+    
+    noTrees.sort((a, b) => {return (a - b)})
+    
+    let counter = 0
+    
+    for(let i = 0; i < a.length; i++) {
+        if(a[i] != -1) {
+            a[i] = noTrees[counter]
+            counter++
+        }
+    }
+    
+    return a
+}
+
+// Divya's solution
